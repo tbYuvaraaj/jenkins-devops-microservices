@@ -36,4 +36,18 @@ pipeline {
 			}
 		}
 	}
+
+	post {
+		always {
+			echo "This will be executed always"
+		}
+
+		success {
+			echo "This will be executed on success"
+		}
+
+		failure {
+			echo "This will be executed on failure"
+		}
+	}
 }
