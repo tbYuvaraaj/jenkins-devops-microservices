@@ -16,12 +16,12 @@
 // Declarative pipeline. Git poll will work here
 
 pipeline {
-	agent any
-	//agent {docker {image 'maven:3.6.3'}}
+	//agent any
+	agent {docker {image 'maven:3.8.1'}}
 	stages {
 		stage('Build') {
 			steps {
-				//sh 'mvn --version'
+				sh 'mvn --version'
 				echo "Build Process"
 			}
 		}
