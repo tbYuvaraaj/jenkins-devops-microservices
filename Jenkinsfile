@@ -45,6 +45,35 @@ pipeline {
 				sh "mvn test"
 			}
 		}
+
+		stage('Package') {
+			steps {
+				sh "mvn package -DskipTests"
+			}
+		}
+
+
+
+		stage('Build docker image') {
+			steps {
+				script {
+					dockerImage = docker.build("tbyuvaraaj/fromDocker:0.0.1.RELEASE")
+				}
+			}
+		}
+
+		stage('Push Docker image') {
+			steps {
+				script {
+					docker.withRegistry('','DockerHub') {
+					dockerImage.push();
+					dockerImage.push('latest');
+
+					}
+
+				}
+			}
+		}
 	}
 
 	post {
