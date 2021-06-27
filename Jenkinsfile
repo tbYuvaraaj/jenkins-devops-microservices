@@ -39,12 +39,12 @@ pipeline {
 			}
 		}
 
-		stage('Test') {
-			steps {
-				echo "Test started...."
-				sh "mvn test"
-			}
-		}
+//		stage('Test') {
+//			steps {
+//				echo "Test started...."
+//				sh "mvn test"
+//			}
+//		}
 
 		stage('Package') {
 			steps {
