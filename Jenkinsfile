@@ -57,7 +57,7 @@ pipeline {
 		stage('Build docker image') {
 			steps {
 				script {
-					dockerImage = docker.build("tbyuvaraaj/fromdocker:0.0.1.RELEASE")
+					dockerImage = docker.build("tbyuvaraaj/fromdocker:0.0.2.RELEASE")
 				}
 			}
 		}
@@ -67,7 +67,6 @@ pipeline {
 				script {
 					docker.withRegistry('','DockerHub') {
 					dockerImage.push();
-					dockerImage.push('latest');
 
 					}
 
