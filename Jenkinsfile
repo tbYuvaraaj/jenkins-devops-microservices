@@ -19,8 +19,8 @@ pipeline {
 	agent any
 	//agent {docker {image 'maven:3.8.1'}}
 	environment {
-		dockerHome = tool 'MyMaven'
-		mavenHome = tool 'MyDocker'
+		dockerHome = tool 'myMaven'
+		mavenHome = tool 'myDocker'
 		PATH = "$dockerHome/bin:$mavenHome/bin:$PATH"
 	}
 	stages {
@@ -39,12 +39,12 @@ pipeline {
 			}
 		}
 
-		stage('Test') {
-			steps {
-				echo "Test started...."
-				sh "mvn test"
-			}
-		}
+//		stage('Test') {
+//			steps {
+//				echo "Test started...."
+//				sh "mvn test"
+//			}
+//		}
 
 		stage('Package') {
 			steps {
@@ -57,7 +57,7 @@ pipeline {
 		stage('Build docker image') {
 			steps {
 				script {
-					dockerImage = docker.build("tbyuvaraaj/fromdocker:0.0.1.RELEASE")
+					dockerImage = docker.build("tbyuvaraaj/fromdocker:0.0.2.RELEASE")
 				}
 			}
 		}
@@ -67,7 +67,6 @@ pipeline {
 				script {
 					docker.withRegistry('','DockerHub') {
 					dockerImage.push();
-					dockerImage.push('latest');
 
 					}
 
