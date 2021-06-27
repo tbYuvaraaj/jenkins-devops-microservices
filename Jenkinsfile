@@ -73,6 +73,21 @@ pipeline {
 				}
 			}
 		}
+
+		stage('Deploy to K8S') {
+			steps {
+				script {
+					kubernetesDeploy(
+						configs: 'deployment.yaml'
+						kubeconfigId: 'K8S'
+						enableConfigSubstitution: true
+					)
+
+					}
+
+				}
+			}
+		}
 	}
 
 	post {
