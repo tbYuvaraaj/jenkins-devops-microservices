@@ -32,15 +32,17 @@ pipeline {
 			}
 		}
 
-				stage('Test') {
+		stage('Compile') {
 			steps {
-				echo "Test process"
+				echo "Compile step started...."
+				sh "mvn clean compile"
 			}
 		}
 
-				stage('Integration test') {
+		stage('Test') {
 			steps {
-				echo "Integration test completed"
+				echo "Test started...."
+				sh "mvn test"
 			}
 		}
 	}
