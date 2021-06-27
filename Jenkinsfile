@@ -23,7 +23,7 @@ pipeline {
 			steps {
 				//sh 'mvn --version'
 				echo "Build Process"
-				echo "Branch Name: $env.BRANCH_ID"
+				echo "Branch Name: $BRANCH_ID"
 			}
 		}
 
